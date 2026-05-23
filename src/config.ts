@@ -7,6 +7,11 @@ export const site = {
 export const affiliateUrl =
   import.meta.env.PUBLIC_AFFILIATE_URL ?? 'https://example.com/ref';
 
+export const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL ?? '';
+export const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? '';
+export const reviewsEnabled = Boolean(supabaseUrl && supabaseAnonKey);
+export const reviewsSiteSlug = 'lucky-jet-slot';
+
 export const nav = [
   { href: '/', label: 'Главная' },
   { href: '/otzyvy/', label: 'Отзывы' },
