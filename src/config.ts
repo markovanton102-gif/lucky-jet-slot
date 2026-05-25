@@ -9,8 +9,11 @@ export const affiliateUrl =
 
 export const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL ?? '';
 export const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? '';
-export const reviewsEnabled = Boolean(supabaseUrl && supabaseAnonKey);
 export const reviewsSiteSlug = 'lucky-jet-slot';
+
+export const whereToPlay = [
+  { name: '1win', url: 'https://w-one909485.life/v3/lucky-jet-updated?p=tq23' },
+] as const;
 
 export const nav = [
   { href: '/', label: 'Главная' },
