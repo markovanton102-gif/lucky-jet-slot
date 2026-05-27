@@ -1,18 +1,27 @@
 ---
 import PlayButton from './PlayButton.astro';
+import ApkDownloadButton from './ApkDownloadButton.astro';
 
 interface Props {
   title: string;
   lead: string;
+  showPlayButton?: boolean;
+  showApkButton?: boolean;
+  playHref?: string;
 }
 
-const { title, lead } = Astro.props;
+const { title, lead, showPlayButton = true, showApkButton = false, playHref } = Astro.props;
 ---
 
 <section class="hero">
   <div class="container">
     <h1>{title}</h1>
     <p>{lead}</p>
-    <PlayButton />
+    {showApkButton && (
+      <p class="hero-cta">
+        <ApkDownloadButton />
+      </p>
+    )}
+    {showPlayButton && <PlayButton href={playHref} />}
   </div>
 </section>

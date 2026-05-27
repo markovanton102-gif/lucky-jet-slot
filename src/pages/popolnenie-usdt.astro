@@ -2,20 +2,57 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import PlayButton from '../components/PlayButton.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import type { BreadcrumbItem } from '../lib/seo';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { name: 'Главная', path: '/' },
+  { name: 'Пополнение USDT', path: '/popolnenie-usdt/' },
+];
+
+const metaDescription =
+  'Lucky Jet пополнение USDT TRC-20 ERC-20: криптодепозит в казино и игра в лаки джет на реальные деньги.';
 ---
 
 <BaseLayout
   title="Lucky Jet — пополнение USDT"
-  description="Играть в Lucky Jet через USDT и криптовалюту: депозит Bitcoin USDT."
+  description={metaDescription}
+  breadcrumbs={breadcrumbs}
 >
   <PageHero
     title="Lucky Jet — пополнение USDT"
-    lead="Криптовалюта часто используется там, где карты ограничены. USDT — стабильный вариант без волатильности BTC."
+    lead="USDT удобен, если карта недоступна или нужен быстрый перевод — проверьте сеть и адрес в кассе."
   />
   <article class="content">
     <div class="container">
-      <p>Выбери депозит USDT (TRC-20 / ERC-20 — смотри сеть на площадке), зачисли и открой Lucky Jet.</p>
-      <p><a href="/popolnenie-kartoy/">Пополнение картой</a></p>
+      <Breadcrumbs items={breadcrumbs} />
+
+      <p class="article-lead">
+        <strong>Пополнение USDT</strong> для игры в Lucky Jet: в кассе казино выбирают Tether, копируют адрес и сеть
+        (TRC-20, ERC-20 и др.), отправляют точную сумму с учётом комиссии сети.
+      </p>
+
+      <h2>Шаги депозита USDT</h2>
+      <ol>
+        <li>Касса → криптовалюта → USDT.</li>
+        <li>Скопируйте адрес и <strong>сеть</strong> — ошибка сети = потеря средств.</li>
+        <li>Отправьте USDT с кошелька или биржи.</li>
+        <li>Дождитесь подтверждений в блокчейне.</li>
+        <li>Откройте Lucky Jet после зачисления баланса.</li>
+      </ol>
+
+      <h2>Советы</h2>
+      <ul>
+        <li>Сделайте тестовый минимальный перевод при первом депозите</li>
+        <li>Не отправляйте другие монеты на USDT-адрес</li>
+        <li>Курс и лимиты — в правилах оператора</li>
+      </ul>
+
+      <p>
+        Карта: <a href="/popolnenie-kartoy/">пополнение картой</a>. Старт игры:{' '}
+        <a href="/igrat-na-dengi/">на деньги</a>, площадки — <a href="/gde-igrat/">где играть</a>.
+      </p>
+
       <p><PlayButton /></p>
     </div>
   </article>

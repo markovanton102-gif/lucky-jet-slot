@@ -2,30 +2,65 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import PlayButton from '../components/PlayButton.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import type { BreadcrumbItem } from '../lib/seo';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { name: 'Главная', path: '/' },
+  { name: 'Играть на деньги', path: '/igrat-na-dengi/' },
+];
+
+const metaDescription =
+  'Играть в Lucky Jet на реальные деньги: регистрация, депозит, поиск игры в каталоге и ответственная игра в crash.';
 ---
 
 <BaseLayout
   title="Lucky Jet — играть на деньги"
-  description="Играть в Lucky Jet на реальные деньги: регистрация, депозит и старт игры онлайн."
+  description={metaDescription}
+  breadcrumbs={breadcrumbs}
 >
   <PageHero
     title="Играть в Lucky Jet на деньги"
-    lead="Чтобы играть на реальные деньги, нужна регистрация на площадке с этой игрой в каталоге и пополнение счёта."
+    lead="Реальный баланс усиливает азарт — заранее задайте лимит сессии и целевой множитель для cash out."
   />
   <article class="content">
     <div class="container">
-      <h2>Как начать</h2>
-      <ol>
-        <li>Выбери площадку с Lucky Jet в каталоге instant-игр.</li>
-        <li>Зарегистрируйся (18+).</li>
-        <li>Пополни счёт удобным способом.</li>
-        <li>Найди Lucky Jet в разделе игр и сделай ставку.</li>
-      </ol>
-      <p>
-        Способы пополнения:
-        <a href="/popolnenie-kartoy/">карта</a>,
-        <a href="/popolnenie-usdt/">USDT</a>.
+      <Breadcrumbs items={breadcrumbs} />
+
+      <p class="article-lead">
+        Чтобы <strong>играть в Lucky Jet на деньги</strong>, нужна регистрация у оператора, депозит и запуск игры из
+        каталога crash. Ниже — пошагово и ссылки на пополнение.
       </p>
+
+      <h2>Шаги: от регистрации до первой ставки</h2>
+      <ol>
+        <li>Выберите площадку — см. <a href="/gde-igrat/">где играть в Lucky Jet</a>.</li>
+        <li>Создайте аккаунт, подтвердите контакты при необходимости.</li>
+        <li>Пополните баланс удобным способом (карта, USDT, кошелёк).</li>
+        <li>Найдите Lucky Jet в разделе instant/crash.</li>
+        <li>Сделайте минимальную ставку, проверьте кнопку «Забрать».</li>
+      </ol>
+
+      <h2>Банкролл и дисциплина</h2>
+      <ul>
+        <li>Отдельный бюджет на развлечение, не «последние» деньги</li>
+        <li>Стоп-лосс на сессию — например −20% от депозита</li>
+        <li>Фиксированный целевой x (x1.2–x2) вместо погони за x10</li>
+        <li>Не повышать ставку после серии проигрышей</li>
+      </ul>
+
+      <h2>Способы пополнения</h2>
+      <p>
+        <a href="/popolnenie-kartoy/">Пополнение картой</a>, <a href="/popolnenie-usdt/">USDT</a>,{' '}
+        <a href="/popolnenie-qiwi/">электронные кошельки</a> — в зависимости от кассы оператора.
+      </p>
+
+      <h2>Перед игрой</h2>
+      <p>
+        Прочитайте <a href="/kak-igrat/">как играть</a>, при желании — <a href="/demo/">демо</a> и{' '}
+        <a href="/otzyvy/">отзывы</a>. 18+, играйте ответственно.
+      </p>
+
       <p><PlayButton /></p>
     </div>
   </article>

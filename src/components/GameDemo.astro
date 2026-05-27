@@ -1,0 +1,28 @@
+---
+import { demoGameUrl } from '../config';
+
+interface Props {
+  title?: string;
+  priority?: boolean;
+}
+
+const { title = 'Lucky Jet — демо', priority = false } = Astro.props;
+---
+
+{
+  demoGameUrl ? (
+    <div class="game-demo">
+      <iframe
+        title={title}
+        src={demoGameUrl}
+        allow="fullscreen"
+        loading={priority ? 'eager' : 'lazy'}
+      />
+    </div>
+  ) : (
+    <p class="game-demo-missing">
+      Демо на сайте временно недоступно — попробуйте <a href="/gde-igrat/">игру на площадке партнёра</a> в
+      гостевом режиме или через кнопку «Играть».
+    </p>
+  )
+}

@@ -1,26 +1,68 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
+import ApkDownloadButton from '../components/ApkDownloadButton.astro';
 import PlayButton from '../components/PlayButton.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import type { BreadcrumbItem } from '../lib/seo';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { name: 'Главная', path: '/' },
+  { name: 'Скачать', path: '/skachat/' },
+];
+
+const metaDescription =
+  'Скачать Lucky Jet на Android и iPhone: APK казино, браузер, приложение 1win. Лаки джет на телефон без отдельного клиента игры.';
 ---
 
 <BaseLayout
   title="Lucky Jet — скачать на Android и iPhone"
-  description="Скачать Lucky Jet на телефон: Android, iPhone, игра в браузере и через приложение казино."
+  description={metaDescription}
+  breadcrumbs={breadcrumbs}
 >
   <PageHero
     title="Скачать Lucky Jet на телефон"
-    lead="Чаще Lucky Jet доступна в мобильном браузере или в приложении онлайн-казино — отдельный APK встречается реже."
+    lead="Отдельного APK «только Lucky Jet» обычно нет — игра в приложении казино или в мобильном браузере."
+    showPlayButton={false}
+    showApkButton={true}
   />
   <article class="content">
     <div class="container">
+      <Breadcrumbs items={breadcrumbs} />
+
+      <p class="article-lead">
+        Запрос «<strong>скачать лаки джет</strong>» чаще означает установку <strong>приложения казино</strong>, где Lucky
+        Jet есть в каталоге crash/instant-игр, либо ярлык сайта на главный экран.
+      </p>
+
       <h2>Android</h2>
-      <p>Открой сайт казино в Chrome — добавь на главный экран или используй официальное приложение оператора.</p>
+      <p>
+        Установите приложение оператора (например 1win APK) — внутри откройте раздел игр и найдите Lucky Jet. Либо играйте
+        в Chrome: зайдите на сайт казино, авторизуйтесь, добавьте ярлык «На главный экран».
+      </p>
+      <p><ApkDownloadButton /></p>
+
       <h2>iPhone (iOS)</h2>
-      <p>В Safari — игра в браузере; в App Store приложения казино зависят от региона.</p>
+      <p>
+        В App Store приложения казино зависят от региона. Чаще используют Safari: вход на сайт оператора, игра в браузере,
+        при необходимости — «Поделиться» → «На экран Домой».
+      </p>
+
       <h2>Компьютер</h2>
-      <p>Достаточно браузера, скачивание клиента обычно не требуется.</p>
-      <p><PlayButton /></p>
+      <p>
+        Отдельный клиент Lucky Jet не требуется — достаточно браузера. Для стабильности используйте актуальный Chrome или
+        Firefox и стабильный интернет: задержка влияет на момент cash out.
+      </p>
+
+      <h2>Безопасность APK</h2>
+      <p>
+        Скачивайте APK только с официального сайта оператора, не с файлообменников. Проверьте разрешения при установке.
+        Подробнее о старте — <a href="/igrat-na-dengi/">играть на деньги</a>, <a href="/gde-igrat/">где играть</a>.
+      </p>
+
+      <div class="download-cta-secondary">
+        <PlayButton />
+      </div>
     </div>
   </article>
 </BaseLayout>

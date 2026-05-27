@@ -1,7 +1,13 @@
 ---
 import { affiliateUrl } from '../config';
+
+interface Props {
+  href?: string;
+}
+
+const { href = affiliateUrl } = Astro.props;
 ---
 
-<a class="btn-play" href={affiliateUrl} rel="nofollow sponsored noopener" target="_blank">
+<a class="btn-play" href={href} rel="nofollow sponsored noopener" target="_blank">
   Играть
 </a>

@@ -2,22 +2,61 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import PlayButton from '../components/PlayButton.astro';
+import GameDemo from '../components/GameDemo.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import type { BreadcrumbItem } from '../lib/seo';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { name: 'Главная', path: '/' },
+  { name: 'Демо', path: '/demo/' },
+];
+
+const metaDescription =
+  'Lucky Jet демо бесплатно: играть без депозита, потренировать cash out и тайминг до вылета раунда. Лаки джет онлайн.';
 ---
 
 <BaseLayout
   title="Lucky Jet — демо бесплатно"
-  description="Lucky Jet демо: играть бесплатно, потренироваться без депозита."
+  description={metaDescription}
+  breadcrumbs={breadcrumbs}
 >
   <PageHero
     title="Lucky Jet — демо-режим"
-    lead="Демо позволяет понять механику без риска. Конверсия в депозит ниже, зато удобно для новичков."
+    lead="Демо позволяет понять crash-механику без риска: рост множителя, кнопка «забрать» и момент обрыва раунда."
   />
+  <section class="demo-screen">
+    <div class="container">
+      <GameDemo title="Lucky Jet — демо" priority />
+    </div>
+  </section>
   <article class="content">
     <div class="container">
-      <p>
-        Если демо доступно на площадке — используй его, чтобы отработать, сколько ячеек открывать за
-        раунд. На реальные деньги переходи только с готовым лимитом по банкроллу.
+      <Breadcrumbs items={breadcrumbs} />
+
+      <p class="article-lead">
+        <strong>Демо Lucky Jet</strong> — способ отработать вывод ставки на виртуальном балансе. Конверсия в депозит у
+        оператора ниже, зато новички видят, как ведёт себя множитель и когда раунд обрывается.
       </p>
+
+      <h2>Зачем нужно демо crash-игры</h2>
+      <ul>
+        <li>Понять, как быстро растёт коэффициент на вашей версии клиента</li>
+        <li>Попробовать авто-вывод по заданному x (если есть в интерфейсе)</li>
+        <li>Оценить лаги и удобство кнопки на телефоне</li>
+      </ul>
+
+      <h2>Демо vs игра на деньги</h2>
+      <p>
+        В демо эмоции слабее — легче забирать на x1.5. На реальном балансе важен заранее заданный стоп и лимит сессии.
+        Переход — через <a href="/igrat-na-dengi/">играть на деньги</a> и <a href="/gde-igrat/">выбор площадки</a>.
+      </p>
+
+      <h2>Если демо на сайте недоступно</h2>
+      <p>
+        Откройте каталог instant-игр у партнёра — часто там есть гостевой режим или минимальный депозит для доступа.
+        Альтернатива — похожие crash в <a href="/analogi/">аналогах</a> (Aviator, Spaceman).
+      </p>
+
       <p><PlayButton /></p>
     </div>
   </article>

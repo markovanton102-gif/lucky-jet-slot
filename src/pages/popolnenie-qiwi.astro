@@ -2,19 +2,51 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import PlayButton from '../components/PlayButton.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import type { BreadcrumbItem } from '../lib/seo';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { name: 'Главная', path: '/' },
+  { name: 'Пополнение QIWI', path: '/popolnenie-qiwi/' },
+];
+
+const metaDescription =
+  'Lucky Jet пополнение QIWI и электронными кошельками: депозит в казино где доступно и запуск лаки джет.';
 ---
 
 <BaseLayout
   title="Lucky Jet — пополнение QIWI"
-  description="Пополнение для игры Lucky Jet через QIWI и электронные кошельки где доступно."
+  description={metaDescription}
+  breadcrumbs={breadcrumbs}
 >
   <PageHero
     title="Lucky Jet — электронные кошельки"
-    lead="Доступность QIWI и аналогов зависит от площадки и региона. Проверяй кассу перед регистрацией."
+    lead="QIWI и другие кошельки в кассе зависят от оператора и региона — смотрите актуальный список в депозите."
   />
   <article class="content">
     <div class="container">
-      <p>Если кошелёк доступен в кассе — пополни баланс и запусти Lucky Jet из каталога игр.</p>
+      <Breadcrumbs items={breadcrumbs} />
+
+      <p class="article-lead">
+        <strong>Пополнение для Lucky Jet</strong> через QIWI, ЮMoney и аналоги возможно, если метод есть в кассе
+        выбранного казино. Доступность меняется — проверяйте раздел «Депозит» после входа.
+      </p>
+
+      <h2>Как пополнить через кошелёк</h2>
+      <ol>
+        <li>Авторизация на площадке — <a href="/gde-igrat/">где играть</a>.</li>
+        <li>Касса → выберите QIWI или другой кошелёк из списка.</li>
+        <li>Укажите сумму, перейдите по ссылке или QR.</li>
+        <li>Оплатите в приложении кошелька.</li>
+        <li>После зачисления откройте Lucky Jet в каталоге crash.</li>
+      </ol>
+
+      <h2>Альтернативы</h2>
+      <p>
+        <a href="/popolnenie-kartoy/">Банковская карта</a>, <a href="/popolnenie-usdt/">USDT</a>. Общий порядок —{' '}
+        <a href="/igrat-na-dengi/">играть на деньги</a>.
+      </p>
+
       <p><PlayButton /></p>
     </div>
   </article>

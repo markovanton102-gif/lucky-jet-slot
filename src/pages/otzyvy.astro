@@ -3,29 +3,57 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import PlayButton from '../components/PlayButton.astro';
 import ReviewsSection from '../components/ReviewsSection.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import type { BreadcrumbItem } from '../lib/seo';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { name: 'Главная', path: '/' },
+  { name: 'Отзывы', path: '/otzyvy/' },
+];
+
+const metaDescription =
+  'Отзывы о Lucky Jet (лаки джет): опыт игроков, плюсы и минусы crash-игры, честность раундов и советы по банкроллу.';
 ---
 
 <BaseLayout
   title="Lucky Jet — отзывы игроков"
-  description="Отзывы о игре Lucky Jet: опыт игроков, плюсы и минусы, честность механики."
+  description={metaDescription}
+  breadcrumbs={breadcrumbs}
 >
   <PageHero
     title="Отзывы о игре Lucky Jet"
-    lead="Собираем типичные мнения игроков: быстрые раунды, контроль вывода и риск «взрыва» на последней ячейке."
+    lead="Собираем типичные мнения: быстрые раунды, азарт «дотянуть множитель» и важность дисциплины при cash out."
   />
   <article class="content">
     <div class="container">
-      <h2>Что хвалят</h2>
+      <Breadcrumbs items={breadcrumbs} />
+
+      <p class="article-lead">
+        <strong>Отзывы Lucky Jet</strong> в сети часто делятся на «затягивает» и «понятные правила». Ниже — обобщение без
+        привязки к одному казино; ниже формы — живые комментарии с площадки.
+      </p>
+
+      <h2>Что хвалят в Lucky Jet</h2>
       <ul>
-        <li>Понятные правила без сложных линий выплат</li>
-        <li>Можно играть с телефона в браузере</li>
-        <li>Короткие сессии — удобно для перерыва</li>
+        <li>Понятная механика crash — один раунд, одна кнопка «забрать»</li>
+        <li>Короткие сессии, удобно с телефона в браузере или в приложении казино</li>
+        <li>Видно множитель в реальном времени — нет сложных таблиц выплат</li>
+        <li>Иногда доступно демо для тренировки (<a href="/demo/">демо Lucky Jet</a>)</li>
       </ul>
+
       <h2>На что жалуются</h2>
       <ul>
-        <li>Высокий риск при жадности — забирают слишком поздно</li>
-        <li>Нужна дисциплина по банкроллу</li>
+        <li>Жадность — тянут до x5–x10 и не успевают вывести</li>
+        <li>Серии проигрышей при отсутствии лимита на сессию</li>
+        <li>Разный интерфейс у операторов — не всегда сразу найти игру в лобби</li>
       </ul>
+
+      <h2>Типичные советы из отзывов</h2>
+      <p>
+        Игроки рекомендуют заранее выбрать целевой множитель (например x1.3–x2), не удваивать ставку после проигрыша и
+        играть только на лицензированных площадках из раздела <a href="/gde-igrat/">где играть</a>. Правила и тактики —
+        в <a href="/kak-igrat/">как играть</a>.
+      </p>
 
       <ReviewsSection />
 

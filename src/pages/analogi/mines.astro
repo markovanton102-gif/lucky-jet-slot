@@ -1,18 +1,63 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
-import PlayButton from '../../components/PlayButton.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { analogAffiliateUrl } from '../../config';
+import type { BreadcrumbItem } from '../../lib/seo';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { name: 'Главная', path: '/' },
+  { name: 'Аналоги', path: '/analogi/' },
+  { name: 'Mines', path: '/analogi/mines/' },
+];
+
+const metaDescription =
+  'Mines — аналог Lucky Jet в instant: поле с минами, ячейки и вывод. Чем отличается от лаки джет crash и как играть.';
 ---
 
-<BaseLayout
-  title="Mines — аналог Lucky Jet"
-  description="Mines — альтернатива игре Lucky Jet онлайн."
->
-  <PageHero title="Mines — альтернатива Lucky Jet" lead="Похожий instant/crash-формат для смены игры." />
+<BaseLayout title="Mines — аналог Lucky Jet" description={metaDescription} breadcrumbs={breadcrumbs}>
+  <PageHero
+    title="Mines — альтернатива Lucky Jet"
+    lead="Не crash, но тот же instant-формат: открываете ячейки и сами решаете, когда забрать выигрыш."
+    playHref={analogAffiliateUrl}
+  />
   <article class="content">
     <div class="container">
-      <p><a href="/">← Вернуться к Lucky Jet</a></p>
-      <p><PlayButton /></p>
+      <Breadcrumbs items={breadcrumbs} />
+
+      <p class="article-lead">
+        <strong>Mines</strong> (мины, Mines+) — <strong>аналог Lucky Jet</strong> по популярности в казино, но с другой
+        механикой: сетка с минами вместо одного растущего множителя. Подходит, если устали от crash, но нравятся короткие
+        раунды.
+      </p>
+
+      <h2>Как играть в Mines</h2>
+      <p>
+        Выбираете ставку и число мин на поле, открываете ячейки по одной. Каждая безопасная клетка увеличивает
+        множитель. Кнопка «Вывод» фиксирует выигрыш; попадание на мину — проигрыш. В Lucky Jet одно решение за раунд —
+        когда нажать cash out; в Mines — несколько шагов.
+      </p>
+
+      <h2>Mines vs Lucky Jet</h2>
+      <ul>
+        <li><strong>Lucky Jet</strong> — crash, тайминг «забрать» в полёте.</li>
+        <li><strong>Mines</strong> — пошаговый риск, настраиваете сложность поля.</li>
+        <li>Обе — instant, без линий выплат слотов.</li>
+        <li>Дисциплина банкролла важна в обеих.</li>
+      </ul>
+
+      <h2>Кому подойдёт Mines после лаки джет</h2>
+      <p>
+        Если хочется больше контроля за раундом, но без барабанов классических слотов. Начните с малого числа мин и
+        фиксированного лимита ячеек за раунд. Вернуться к crash — <a href="/">Lucky Jet</a>,{' '}
+        <a href="/analogi/aviator/">Aviator</a>.
+      </p>
+
+      <p>
+        <a href="/analogi/">Все аналоги</a>, <a href="/demo/">демо Lucky Jet</a>, <a href="/gde-igrat/">где играть</a>.
+        18+.
+      </p>
+
     </div>
   </article>
 </BaseLayout>

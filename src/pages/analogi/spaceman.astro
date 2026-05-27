@@ -1,18 +1,61 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
-import PlayButton from '../../components/PlayButton.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { analogAffiliateUrl } from '../../config';
+import type { BreadcrumbItem } from '../../lib/seo';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { name: 'Главная', path: '/' },
+  { name: 'Аналоги', path: '/analogi/' },
+  { name: 'Spaceman', path: '/analogi/spaceman/' },
+];
+
+const metaDescription =
+  'Spaceman — аналог Lucky Jet: crash с космонавтом, Pragmatic Play, cash out. Сравнение с лаки джет и как играть онлайн.';
 ---
 
-<BaseLayout
-  title="Spaceman — аналог Lucky Jet"
-  description="Spaceman — игра вместо Lucky Jet: crash с космонавтом, как играть онлайн."
->
-  <PageHero title="Spaceman — альтернатива Lucky Jet" lead="Crash-формат: множитель растёт, нужно успеть забрать ставку." />
+<BaseLayout title="Spaceman — аналог Lucky Jet" description={metaDescription} breadcrumbs={breadcrumbs}>
+  <PageHero
+    title="Spaceman — альтернатива Lucky Jet"
+    lead="Crash от Pragmatic Play: множитель растёт, нужно успеть забрать ставку до вылета."
+    playHref={analogAffiliateUrl}
+  />
   <article class="content">
     <div class="container">
-      <p><a href="/">← Вернуться к Lucky Jet</a></p>
-      <p><PlayButton /></p>
+      <Breadcrumbs items={breadcrumbs} />
+
+      <p class="article-lead">
+        <strong>Spaceman</strong> — популярный <strong>аналог Lucky Jet</strong> с космической темой. Механика crash
+        та же: коэффициент растёт в реальном времени, игрок нажимает «забрать», иначе ставка сгорает при обрыве раунда.
+      </p>
+
+      <h2>Как играть в Spaceman</h2>
+      <p>
+        Ставка → старт раунда → рост множителя у космонавта → cash out. Можно задать авто-вывод на целевой x. Интерфейс
+        отличается от Lucky Jet, но решение одно: не тянуть до «последнего» коэффициента без плана. Правила лаки джет — в{' '}
+        <a href="/kak-igrat/">как играть</a>.
+      </p>
+
+      <h2>Spaceman vs Lucky Jet</h2>
+      <ul>
+        <li>Оба — instant crash, удобны с телефона.</li>
+        <li>Spaceman — Pragmatic Play, космический визуал.</li>
+        <li>Lucky Jet — свой брендинг, часто в лобби 1win.</li>
+        <li>RTP и лимиты смотрите в справке конкретного казино.</li>
+      </ul>
+
+      <h2>Зачем переключаться с Lucky Jet</h2>
+      <p>
+        Если устали от оформления лаки джет или игра недоступна в вашем регионе у оператора — Spaceman часто есть в том
+        же разделе crash. Сравните лаги и кнопку вывода на минимальной ставке перед крупными сессиями.
+      </p>
+
+      <p>
+        Ещё crash: <a href="/analogi/aviator/">Aviator</a>, <a href="/analogi/pilot/">Pilot</a>.{' '}
+        <a href="/analogi/">Все аналоги</a>, <a href="/">Lucky Jet</a>, <a href="/demo/">демо</a>. 18+.
+      </p>
+
     </div>
   </article>
 </BaseLayout>

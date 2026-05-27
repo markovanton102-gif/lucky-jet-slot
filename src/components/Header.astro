@@ -1,5 +1,5 @@
 ---
-import { nav, site } from '../config';
+import { nav } from '../config';
 
 const current = Astro.url.pathname;
 
@@ -11,7 +11,16 @@ function isNavActive(href: string): boolean {
 
 <header class="site-header">
   <div class="container inner">
-    <a class="logo" href="/">{site.name}</a>
+    <a class="logo" href="/">
+      <img
+        class="logo-img"
+        src="/images/lucky-jet-logo.png"
+        alt="Lucky Jet — игра в казино"
+        width="166"
+        height="52"
+        decoding="async"
+      />
+    </a>
     <nav class="nav" aria-label="Основное меню">
       {
         nav.map((item) => (

@@ -2,20 +2,59 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import PlayButton from '../components/PlayButton.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import type { BreadcrumbItem } from '../lib/seo';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { name: 'Главная', path: '/' },
+  { name: 'Пополнение картой', path: '/popolnenie-kartoy/' },
+];
+
+const metaDescription =
+  'Lucky Jet пополнение картой Visa Mastercard Мир: депозит в казино и запуск crash-игры на реальные деньги.';
 ---
 
 <BaseLayout
   title="Lucky Jet — пополнение картой"
-  description="Играть в Lucky Jet через карту Visa Mastercard: пополнение и старт игры."
+  description={metaDescription}
+  breadcrumbs={breadcrumbs}
 >
   <PageHero
     title="Lucky Jet — пополнение банковской картой"
-    lead="Карта остаётся популярным способом депозита там, где банки не блокируют транзакции в гемблинг."
+    lead="Карта — самый частый способ первого депозита у операторов с Lucky Jet в каталоге."
   />
   <article class="content">
     <div class="container">
-      <p>После пополнения картой найди Lucky Jet в каталоге instant-игр и сделай ставку.</p>
-      <p>Альтернатива: <a href="/popolnenie-usdt/">пополнение USDT</a>.</p>
+      <Breadcrumbs items={breadcrumbs} />
+
+      <p class="article-lead">
+        Чтобы играть в <strong>Lucky Jet на деньги</strong> с карты, пополните баланс казино через кассу (Visa,
+        Mastercard, иногда Мир), затем откройте игру в разделе crash.
+      </p>
+
+      <h2>Как пополнить картой</h2>
+      <ol>
+        <li>Войдите в аккаунт на площадке из <a href="/gde-igrat/">где играть</a>.</li>
+        <li>Касса → «Депозит» → банковская карта.</li>
+        <li>Укажите сумму (начните с минимума для теста).</li>
+        <li>Подтвердите 3-D Secure в приложении банка.</li>
+        <li>Дождитесь зачисления и найдите Lucky Jet в каталоге.</li>
+      </ol>
+
+      <h2>На что обратить внимание</h2>
+      <ul>
+        <li>Комиссия и минимальный депозит — в правилах кассы</li>
+        <li>Имя на карте и в профиле казино должны совпадать</li>
+        <li>Вывод часто только на ту же карту или по правилам KYC</li>
+        <li>Бонусы могут иметь вейджер — уточните, входит ли crash</li>
+      </ul>
+
+      <h2>Другие способы</h2>
+      <p>
+        <a href="/popolnenie-usdt/">USDT</a>, <a href="/popolnenie-qiwi/">кошельки</a>, общий гайд —{' '}
+        <a href="/igrat-na-dengi/">играть на деньги</a>.
+      </p>
+
       <p><PlayButton /></p>
     </div>
   </article>

@@ -2,39 +2,63 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import PlayButton from '../components/PlayButton.astro';
-import { whereToPlay } from '../config';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import PartnerCards from '../components/PartnerCards.astro';
+import type { BreadcrumbItem } from '../lib/seo';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { name: 'Главная', path: '/' },
+  { name: 'Где играть', path: '/gde-igrat/' },
+];
+
+const metaDescription =
+  'Где играть в Lucky Jet онлайн: выбор казино с crash-играми, лицензия, выплаты, мобильная версия и пополнение.';
 ---
 
 <BaseLayout
   title="Где играть в Lucky Jet онлайн"
-  description="Где играть в лаки джет онлайн: на что смотреть при выборе площадки, лицензия и выплаты."
+  description={metaDescription}
+  breadcrumbs={breadcrumbs}
 >
   <PageHero
     title="Где играть в Lucky Jet"
-    lead="Ищи площадки с instant-играми в каталоге, быстрым выводом и поддержкой твоего способа оплаты."
+    lead="Ищите площадки с Lucky Jet в каталоге instant/crash, быстрым выводом и удобной кассой под ваш регион."
   />
   <article class="content">
     <div class="container">
-      <h2>Площадки с Lucky Jet</h2>
-      <div class="card-grid">
-        {
-          whereToPlay.map((item) => (
-            <div class="card">
-              <a href={item.url} rel="nofollow sponsored noopener" target="_blank">
-                {item.name}
-              </a>
-            </div>
-          ))
-        }
-      </div>
+      <Breadcrumbs items={breadcrumbs} />
 
-      <h2>Критерии выбора</h2>
+      <p class="article-lead where-intro">
+        <strong>Где играть в лаки джет</strong> — вопрос не только кнопки «Играть», но и лимитов, способов депозита и
+        скорости вывода. Ниже — партнёрские площадки и чеклист перед регистрацией.
+      </p>
+
+      <h2>Площадки с Lucky Jet</h2>
+      <p class="where-intro">Карточка целиком ведёт на сайт оператора. 18+, играйте ответственно.</p>
+      <PartnerCards />
+
+      <h2>Как найти Lucky Jet в казино</h2>
+      <ol>
+        <li>Откройте раздел «Казино», «Instant» или «Crash».</li>
+        <li>В поиске введите Lucky Jet или LuckyJet.</li>
+        <li>Запустите игру — проверьте демо, если доступно (<a href="/demo/">демо</a>).</li>
+      </ol>
+
+      <h2>Критерии выбора оператора</h2>
       <ul>
-        <li>Игра Lucky Jet есть в лобби (Pragmatic Play и др.)</li>
-        <li>Поддержка твоей валюты и гео</li>
-        <li>Удобное пополнение и вывод</li>
-        <li>Мобильная версия без лагов</li>
+        <li>Lucky Jet или аналог crash есть в лобби (не только слоты)</li>
+        <li>Поддержка вашей валюты, языка и гео</li>
+        <li>Удобное пополнение: <a href="/popolnenie-kartoy/">карта</a>, <a href="/popolnenie-usdt/">USDT</a>, кошельки</li>
+        <li>Мобильная версия без сильных лагов на cash out</li>
+        <li>Понятные правила бонусов — отыгрыш может не распространяться на crash</li>
       </ul>
+
+      <h2>Демо и деньги</h2>
+      <p>
+        Сначала можно потренироваться в <a href="/demo/">демо</a>, затем — <a href="/igrat-na-dengi/">игра на реальные
+        деньги</a> с лимитом на сессию. Правила — <a href="/kak-igrat/">как играть</a>, отзывы — <a href="/otzyvy/">отзывы</a>.
+      </p>
+
       <p><PlayButton /></p>
     </div>
   </article>

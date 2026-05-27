@@ -1,18 +1,64 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
-import PlayButton from '../../components/PlayButton.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { analogAffiliateUrl } from '../../config';
+import type { BreadcrumbItem } from '../../lib/seo';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { name: 'Главная', path: '/' },
+  { name: 'Аналоги', path: '/analogi/' },
+  { name: 'Aviator', path: '/analogi/aviator/' },
+];
+
+const metaDescription =
+  'Aviator — аналог Lucky Jet: crash с самолётом, cash out и растущий множитель. Как играть, отличия от лаки джет и где запустить онлайн.';
 ---
 
-<BaseLayout
-  title="Aviator — аналог Lucky Jet"
-  description="Aviator — игра вместо Lucky Jet, crash с самолётом."
->
-  <PageHero title="Aviator — альтернатива Lucky Jet" lead="Самый известный crash в нише. Высокая конкуренция в SEO." />
+<BaseLayout title="Aviator — аналог Lucky Jet" description={metaDescription} breadcrumbs={breadcrumbs}>
+  <PageHero
+    title="Aviator — альтернатива Lucky Jet"
+    lead="Классика crash: самолёт уносит множитель вверх — заберите ставку до вылета из раунда."
+    playHref={analogAffiliateUrl}
+  />
   <article class="content">
     <div class="container">
-      <p><a href="/">← Вернуться к Lucky Jet</a></p>
-      <p><PlayButton /></p>
+      <Breadcrumbs items={breadcrumbs} />
+
+      <p class="article-lead">
+        <strong>Aviator</strong> — самый узнаваемый <strong>аналог Lucky Jet</strong> в нише crash. Запросы «авиатор
+        игра» и «aviator казино» идут рядом с «лаки джет»: та же аудитория, та же логика — растущий коэффициент и
+        кнопка вывода до обрыва раунда.
+      </p>
+
+      <h2>Как играть в Aviator</h2>
+      <p>
+        Делаете одну или две ставки, после старта множитель растёт вместе с анимацией самолёта. Нажимаете Cash Out —
+        получаете ставку × текущий x. Самолёт «улетел» — кто не успел вывести, проиграл. Часто есть авто-вывод по
+        заданному множителю. Lucky Jet устроен так же — см. <a href="/kak-igrat/">как играть в лаки джет</a>.
+      </p>
+
+      <h2>Aviator или Lucky Jet</h2>
+      <ul>
+        <li><strong>Lucky Jet</strong> — персонаж/ракета, часто в каталоге 1win и партнёрских казино.</li>
+        <li><strong>Aviator</strong> — самолёт Spribe, максимальная узнаваемость бренда в поиске.</li>
+        <li>Обе игры — короткие раунды; риск «передержать» раунд одинаков по смыслу.</li>
+      </ul>
+
+      <h2>Кому подойдёт Aviator</h2>
+      <p>
+        Если нравится тайминг cash out в <a href="/">Lucky Jet</a>, но хочется сменить визуал или проверить другой
+        клиент казино — Aviator логичный первый выбор. Для тренировки без депозита — <a href="/demo/">демо Lucky Jet</a>,
+        на площадке партнёра иногда есть и демо Aviator.
+      </p>
+
+      <h2>Другие аналоги crash</h2>
+      <p>
+        <a href="/analogi/spaceman/">Spaceman</a>, <a href="/analogi/pilot/">Pilot</a> — полный список в{' '}
+        <a href="/analogi/">аналоги Lucky Jet</a>. Пополнение и старт: <a href="/gde-igrat/">где играть</a>,{' '}
+        <a href="/igrat-na-dengi/">на деньги</a>. 18+, ответственная игра.
+      </p>
+
     </div>
   </article>
 </BaseLayout>

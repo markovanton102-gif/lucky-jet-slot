@@ -1,18 +1,60 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
-import PlayButton from '../../components/PlayButton.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { analogAffiliateUrl } from '../../config';
+import type { BreadcrumbItem } from '../../lib/seo';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { name: 'Главная', path: '/' },
+  { name: 'Аналоги', path: '/analogi/' },
+  { name: 'Pilot', path: '/analogi/pilot/' },
+];
+
+const metaDescription =
+  'Pilot — аналог Lucky Jet: crash «пилот», растущий множитель и cash out. Сравнение с лаки джет, как играть в СНГ онлайн.';
 ---
 
-<BaseLayout
-  title="Pilot — аналог Lucky Jet"
-  description="Pilot crash — альтернатива игре Lucky Jet онлайн."
->
-  <PageHero title="Pilot — альтернатива Lucky Jet" lead="Популярный crash-слот в СНГ, часто ищут как «пилот игра»." />
+<BaseLayout title="Pilot — аналог Lucky Jet" description={metaDescription} breadcrumbs={breadcrumbs}>
+  <PageHero
+    title="Pilot — альтернатива Lucky Jet"
+    lead="Популярный crash в СНГ: часто ищут как «пилот игра» — та же схема вывода до вылета."
+    playHref={analogAffiliateUrl}
+  />
   <article class="content">
     <div class="container">
-      <p><a href="/">← Вернуться к Lucky Jet</a></p>
-      <p><PlayButton /></p>
+      <Breadcrumbs items={breadcrumbs} />
+
+      <p class="article-lead">
+        <strong>Pilot</strong> (пилот краш) — <strong>аналог Lucky Jet</strong> для игроков из России и СНГ. Запросы
+        «пилот игра казино» пересекаются с «лаки джет»: растущий коэффициент, одна или две ставки, кнопка «Забрать».
+      </p>
+
+      <h2>Как играть в Pilot</h2>
+      <p>
+        Алгоритм как у Lucky Jet: дождаться старта, следить за множителем, вывести ставку до обрыва. Не повышайте ставку
+        после серии проигрышей — у crash-игр нет «отыгрыша» по математике. Лимит на сессию задайте заранее, как советуют
+        в <a href="/otzyvy/">отзывах</a> о лаки джет.
+      </p>
+
+      <h2>Pilot или Lucky Jet</h2>
+      <ul>
+        <li>Механика почти идентична — выбор часто по наличию в каталоге казино.</li>
+        <li>Разное оформление и провайдер в лобби.</li>
+        <li>Обе игры 18+, только свободный банкролл.</li>
+      </ul>
+
+      <h2>Где найти Pilot после Lucky Jet</h2>
+      <p>
+        Откройте раздел instant/crash у оператора из <a href="/gde-igrat/">где играть</a> или воспользуйтесь кнопкой
+        ниже — каталог казино с crash-играми. Перед депозитом проверьте правила бонусов: crash иногда не идёт в отыгрыш.
+      </p>
+
+      <p>
+        Похожие: <a href="/analogi/aviator/">Aviator</a>, <a href="/analogi/spaceman/">Spaceman</a>.{' '}
+        <a href="/analogi/">Аналоги</a>, <a href="/">главная Lucky Jet</a>. 18+.
+      </p>
+
     </div>
   </article>
 </BaseLayout>

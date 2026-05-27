@@ -1,18 +1,62 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
-import PlayButton from '../../components/PlayButton.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { analogAffiliateUrl } from '../../config';
+import type { BreadcrumbItem } from '../../lib/seo';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { name: 'Главная', path: '/' },
+  { name: 'Аналоги', path: '/analogi/' },
+  { name: 'Plinko', path: '/analogi/plinko/' },
+];
+
+const metaDescription =
+  'Plinko — аналог Lucky Jet: плинко онлайн, шарик и множители. Отличия от crash лаки джет и как играть в казино.';
 ---
 
-<BaseLayout
-  title="Plinko — аналог Plinko"
-  description="Plinko вместо Plinko: шарик, ячейки и множители."
->
-  <PageHero title="Plinko — альтернатива Lucky Jet" lead="Другая механика, но тот же instant-формат и быстрые раунды." />
+<BaseLayout title="Plinko — аналог Lucky Jet" description={metaDescription} breadcrumbs={breadcrumbs}>
+  <PageHero
+    title="Plinko — альтернатива Lucky Jet"
+    lead="Плинко: шарик падает по кеглям — результат сразу в ячейке с множителем, без тайминга вылета."
+    playHref={analogAffiliateUrl}
+  />
   <article class="content">
     <div class="container">
-      <p><a href="/">← Вернуться к Lucky Jet</a></p>
-      <p><PlayButton /></p>
+      <Breadcrumbs items={breadcrumbs} />
+
+      <p class="article-lead">
+        <strong>Plinko</strong> (плинко, Plinko+) — <strong>аналог Lucky Jet</strong> в каталоге instant-игр: быстрые
+        раунды и множители, но другая механика. Нет кнопки «забрать» в полёте — исход определяет слот внизу поля после
+        падения шарика.
+      </p>
+
+      <h2>Как играть в Plinko</h2>
+      <p>
+        Задаёте ставку, часто — уровень риска или число рядов кеглей. Запускаете шарик, он отскакивает и попадает в ячейку
+        с коэффициентом x2, x10 и выше. Выигрыш = ставка × множитель слота. Один раунд — один результат, без серии
+        решений как в crash.
+      </p>
+
+      <h2>Plinko vs Lucky Jet</h2>
+      <ul>
+        <li><strong>Lucky Jet</strong> — растущий x, cash out до вылета.</li>
+        <li><strong>Plinko</strong> — случайный путь шарика, результат сразу.</li>
+        <li>Plinko проще для новичков по числу решений за раунд.</li>
+        <li>Обе игры популярны в мобильных казино СНГ.</li>
+      </ul>
+
+      <h2>Зачем пробовать плинко вместо лаки джет</h2>
+      <p>
+        Если устали от погони за множителем в crash или хотите «отдых» от тайминга вылета. Для возврата к crash —{' '}
+        <a href="/">Lucky Jet</a>, <a href="/kak-igrat/">правила</a>, <a href="/demo/">демо</a>.
+      </p>
+
+      <p>
+        Crash-аналоги: <a href="/analogi/aviator/">Aviator</a>, <a href="/analogi/spaceman/">Spaceman</a>.{' '}
+        <a href="/analogi/">Список аналогов</a>. 18+.
+      </p>
+
     </div>
   </article>
 </BaseLayout>

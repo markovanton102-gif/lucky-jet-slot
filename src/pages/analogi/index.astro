@@ -1,35 +1,141 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import type { BreadcrumbItem } from '../../lib/seo';
 
-const analogs = [
-  { href: '/analogi/mines/', title: 'Mines', desc: 'Сапёр-формат, другая механика риска' },
-  { href: '/analogi/spaceman/', title: 'Spaceman', desc: 'Космический crash от Pragmatic' },
-  { href: '/analogi/aviator/', title: 'Aviator', desc: 'Классика жанра crash' },
-  { href: '/analogi/plinko/', title: 'Plinko', desc: 'Шарик и множители' },
-  { href: '/analogi/pilot/', title: 'Pilot', desc: 'Crash «пилот»' },
-  { href: '/analogi/chicken-rush/', title: 'Chicken Rush', desc: 'Instant-игра' },
+const breadcrumbs: BreadcrumbItem[] = [
+  { name: 'Главная', path: '/' },
+  { name: 'Аналоги', path: '/analogi/' },
 ];
+
+type AnalogItem = {
+  href: string;
+  title: string;
+  desc: string;
+  tag: string;
+  icon: string;
+};
+
+const crashAnalogs: AnalogItem[] = [
+  {
+    href: '/analogi/aviator/',
+    title: 'Aviator',
+    tag: 'Crash',
+    icon: '✈️',
+    desc: 'Самолёт уносит множитель вверх — заберите ставку до вылета. Самый узнаваемый аналог Lucky Jet.',
+  },
+  {
+    href: '/analogi/spaceman/',
+    title: 'Spaceman',
+    tag: 'Crash',
+    icon: '🚀',
+    desc: 'Космонавт и растущий коэффициент от Pragmatic Play. Та же логика cash out, другое оформление.',
+  },
+  {
+    href: '/analogi/pilot/',
+    title: 'Pilot',
+    tag: 'Crash',
+    icon: '🛩️',
+    desc: 'Популярный crash в СНГ — часто ищут как «пилот игра». Короткие раунды и кнопка «Забрать».',
+  },
+];
+
+const instantAnalogs: AnalogItem[] = [
+  {
+    href: '/analogi/mines/',
+    title: 'Mines',
+    tag: 'Instant',
+    icon: '💣',
+    desc: 'Поле с минами: открываете ячейки и сами решаете, когда вывести. Пошаговый риск вместо одного вылета.',
+  },
+  {
+    href: '/analogi/plinko/',
+    title: 'Plinko',
+    tag: 'Instant',
+    icon: '🎯',
+    desc: 'Шарик падает по кеглям — множитель в слоте внизу. Один запуск, результат сразу, без тайминга вылета.',
+  },
+  {
+    href: '/analogi/chicken-rush/',
+    title: 'Chicken Rush',
+    tag: 'Instant',
+    icon: '🐔',
+    desc: 'Трендовая instant с простой механикой. Для смены формата, если устали от crash и лаки джет.',
+  },
+];
+
+const metaDescription =
+  'Аналоги Lucky Jet: Aviator, Spaceman, Pilot, Mines, Plinko, Chicken Rush — crash и instant-игры с похожим темпом.';
 ---
 
-<BaseLayout
-  title="Аналоги Lucky Jet"
-  description="Игры похожие на Lucky Jet: Spaceman, Plinko, Pilot, Aviator и другие instant-слоты."
->
+<BaseLayout title="Аналоги Lucky Jet" description={metaDescription} breadcrumbs={breadcrumbs}>
   <PageHero
+    showPlayButton={false}
     title="Аналоги игры Lucky Jet"
-    lead="Если хочешь сменить формат — instant и crash-игры с похожей механикой риска и множителей."
+    lead="Выберите игру — карточка целиком ведёт на обзор: правила, отличия от лаки джет и когда имеет смысл переключиться."
   />
-  <article class="content">
+  <article class="content content--analogi">
     <div class="container">
-      <div class="card-grid">
-        {analogs.map((a) => (
-          <div class="card">
-            <a href={a.href}>{a.title}</a>
-            <p>{a.desc}</p>
-          </div>
-        ))}
-      </div>
+      <Breadcrumbs items={breadcrumbs} />
+
+      <p class="article-lead">
+        <strong>Аналоги Lucky Jet</strong> — crash с кнопкой «забрать» или instant с другой механикой, но тем же
+        быстрым форматом с телефона. Нажмите на карточку, чтобы открыть страницу игры.
+      </p>
+
+      <section class="analog-section" aria-labelledby="analog-crash-heading">
+        <h2 id="analog-crash-heading">Crash — ближе всего к Lucky Jet</h2>
+        <p class="analog-section-lead">
+          Растущий множитель и cash out до обрыва раунда — как в лаки джет, другое визуальное оформление.
+        </p>
+        <ul class="analog-grid">
+          {
+            crashAnalogs.map((a) => (
+              <li>
+                <a href={a.href} class="analog-card analog-card--crash">
+                  <span class="analog-card__icon" aria-hidden="true">
+                    {a.icon}
+                  </span>
+                  <span class="analog-card__tag">{a.tag}</span>
+                  <h3 class="analog-card__title">{a.title}</h3>
+                  <p class="analog-card__desc">{a.desc}</p>
+                  <span class="analog-card__cta">Читать обзор</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section class="analog-section" aria-labelledby="analog-instant-heading">
+        <h2 id="analog-instant-heading">Instant — другая механика</h2>
+        <p class="analog-section-lead">
+          Не crash, но те же короткие сессии в каталоге казино — если хочется сменить способ риска.
+        </p>
+        <ul class="analog-grid">
+          {
+            instantAnalogs.map((a) => (
+              <li>
+                <a href={a.href} class="analog-card analog-card--instant">
+                  <span class="analog-card__icon" aria-hidden="true">
+                    {a.icon}
+                  </span>
+                  <span class="analog-card__tag">{a.tag}</span>
+                  <h3 class="analog-card__title">{a.title}</h3>
+                  <p class="analog-card__desc">{a.desc}</p>
+                  <span class="analog-card__cta">Читать обзор</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <p class="analog-footer-links">
+        Вернуться к <a href="/">Lucky Jet</a> · <a href="/demo/">демо</a> · <a href="/gde-igrat/">где играть</a>
+        <span class="analog-age">18+</span>
+      </p>
     </div>
   </article>
 </BaseLayout>

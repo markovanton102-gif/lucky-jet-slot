@@ -2,30 +2,196 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import PlayButton from '../components/PlayButton.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { site } from '../config';
+import type { BreadcrumbItem } from '../lib/seo';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { name: 'Главная', path: '/' },
+  { name: 'Как играть', path: '/kak-igrat/' },
+];
+
+const pageUrl = `${site.domain}/kak-igrat/`;
+const metaDescription =
+  'Как играть в Lucky Jet (лаки джет): ставка, рост множителя, кнопка «Забрать», авто-вывод и тактики. Правила crash-игры с иллюстрациями интерфейса.';
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Как играть в Lucky Jet онлайн: правила crash и cash out',
+    description: metaDescription,
+    inLanguage: 'ru-RU',
+    author: { '@type': 'Organization', name: site.name },
+    publisher: { '@type': 'Organization', name: site.name },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Как сыграть раунд в Lucky Jet',
+    description: 'Пошагово: ставка, старт раунда, рост множителя и вывод до вылета.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Ставка',
+        text: 'Укажите сумму ставки в панели внизу. Можно сделать одну или две ставки на раунд.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Старт',
+        text: 'Дождитесь начала раунда — множитель стартует с x1.00 и растёт.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Cash out',
+        text: 'Нажмите «Забрать», пока персонаж не вылетел — выигрыш = ставка × текущий коэффициент.',
+      },
+    ],
+  },
+];
 ---
 
 <BaseLayout
   title="Lucky Jet — как играть и стратегия"
-  description="Как играть в Lucky Jet: правила, тактики, размер поля и когда забирать выигрыш."
+  description={metaDescription}
+  jsonLd={jsonLd}
+  breadcrumbs={breadcrumbs}
 >
   <PageHero
     title="Как играть в Lucky Jet"
-    lead="Выбираешь количество мин, открываешь ячейки и фиксируешь выигрыш. Чем больше мин — тем выше риск и множитель."
+    lead="Lucky Jet — crash-игра: коэффициент растёт в реальном времени, нужно успеть забрать ставку до вылета. Ниже — пошаговая инструкция с иллюстрациями."
   />
-  <article class="content">
-    <div class="container">
-      <h2>Базовые шаги</h2>
+  <article class="content article-guide">
+    <div class="container container--wide">
+      <Breadcrumbs items={breadcrumbs} />
+
+      <p class="article-lead">
+        <strong>Lucky Jet</strong> (лаки джет) — instant-игра в формате <strong>crash</strong>: персонаж или ракета
+        «летит», множитель увеличивается от x1.00. Игрок нажимает <strong>«Забрать»</strong> (cash out), пока раунд не
+        оборвался. Не попали вовремя — ставка проиграна.
+      </p>
+
+      <h2 id="pravila">Правила Lucky Jet простыми словами</h2>
       <ol>
-        <li>Укажи ставку и число мин на поле.</li>
-        <li>Открывай ячейки по одной.</li>
-        <li>Забирай выигрыш до попадания на мину.</li>
+        <li>Задаёте <strong>сумму ставки</strong> (иногда две ставки на один раунд).</li>
+        <li>После старта <strong>множитель растёт</strong> — x1.10, x1.50, x2.00 и выше.</li>
+        <li>Нажимаете <strong>«Забрать»</strong> — выигрыш = ставка × текущий x.</li>
+        <li>Если раунд <strong>вылетел</strong> раньше — ставка сгорает.</li>
       </ol>
-      <h2>Простые тактики</h2>
+
+      <section class="article-split">
+        <figure class="article-split-media">
+          <img
+            src="/images/kak-igrat/lucky-jet-stavka.png"
+            width="1024"
+            height="576"
+            loading="lazy"
+            decoding="async"
+            alt="Lucky Jet: панель ставки перед раундом, кнопка Bet и множитель x1.00"
+          />
+        </figure>
+        <div class="article-split-body">
+          <h3 id="stavka">Шаг 1. Ставка перед раундом</h3>
+          <p>
+            Внизу экрана — поле суммы и кнопка ставки (<strong>Bet</strong> / «Ставка»). У многих версий есть{' '}
+            <strong>два слота</strong> — можно поставить две независимые ставки на один полёт и забирать их по
+            отдельности.
+          </p>
+          <p>
+            Начните с <strong>минимальной ставки</strong>, чтобы понять интерфейс. Проверьте баланс и лимиты в
+            справке (i) у оператора.
+          </p>
+        </div>
+      </section>
+
+      <section class="article-split article-split--reverse">
+        <figure class="article-split-media">
+          <img
+            src="/images/kak-igrat/lucky-jet-multiplier.png"
+            width="1024"
+            height="576"
+            loading="lazy"
+            decoding="async"
+            alt="Lucky Jet: растущий множитель x3.24, персонаж в полёте, кнопка Cash Out"
+          />
+        </figure>
+        <div class="article-split-body">
+          <h3 id="multiplier">Шаг 2. Рост множителя</h3>
+          <p>
+            После старта коэффициент растёт в реальном времени — на экране крупно отображается текущий{' '}
+            <strong>x</strong>. Персонаж или ракета движется вверх; график показывает динамику раунда.
+          </p>
+          <p class="article-quote">
+            Чем дольше ждёте — тем выше потенциальный выигрыш, но выше риск не успеть до вылета.
+          </p>
+          <p>
+            Не существует «безопасного» x: каждый раунд может оборваться на x1.01. Результат определяет ГСЧ сервера.
+          </p>
+        </div>
+      </section>
+
+      <section class="article-split">
+        <figure class="article-split-media">
+          <img
+            src="/images/kak-igrat/lucky-jet-cashout.png"
+            width="1024"
+            height="576"
+            loading="lazy"
+            decoding="async"
+            alt="Lucky Jet: успешный cash out на множителе x1.75, зачисление выигрыша"
+          />
+        </figure>
+        <div class="article-split-body">
+          <h3 id="cashout">Шаг 3. Забрать выигрыш (Cash Out)</h3>
+          <p>
+            Нажмите <strong>«Забрать»</strong> / <strong>Cash Out</strong>, пока раунд активен. На экране появится
+            зафиксированный множитель и сумма выигрыша. Если вылет произошёл раньше клика — ставка проиграна.
+          </p>
+          <p>
+            На мобильном важна <strong>скорость интернета</strong>: задержка может мешать вовремя нажать кнопку.
+          </p>
+        </div>
+      </section>
+
+      <section class="article-split article-split--reverse">
+        <figure class="article-split-media">
+          <img
+            src="/images/kak-igrat/lucky-jet-auto.png"
+            width="1024"
+            height="576"
+            loading="lazy"
+            decoding="async"
+            alt="Lucky Jet: авто-вывод на x2.00 и настройки автоставки"
+          />
+        </figure>
+        <div class="article-split-body">
+          <h3 id="auto">Авто-вывод и автоставка</h3>
+          <p>
+            Часто доступен <strong>авто cash out</strong>: задаёте целевой x (например x2.00) — система заберёт ставку
+            автоматически при достижении. Удобно для дисциплины, но не гарантирует прибыль на дистанции.
+          </p>
+          <p>
+            <strong>Автоставка</strong> повторяет сумму каждый раунд — используйте только с лимитом на сессию.
+          </p>
+        </div>
+      </section>
+
+      <h2 id="taktiki">Простые тактики и ошибки</h2>
       <ul>
-        <li>Фиксированный лимит ячеек за раунд (например, 3–5)</li>
-        <li>Стоп-лосс на сессию, не отыгрываться</li>
-        <li>Меньше мин на поле — спокойнее, но ниже множители</li>
+        <li><strong>Целевой x</strong> заранее (x1.3–x2) вместо погони за x10.</li>
+        <li><strong>Стоп-лосс</strong> на сессию — не отыгрываться.</li>
+        <li>Не повышать ставку после проигрыша.</li>
+        <li>Не верить «сигналам» и ботам в Telegram — RNG случаен.</li>
       </ul>
+
+      <h2 id="demo">Демо и игра на деньги</h2>
+      <p>
+        Потренироваться без риска — <a href="/demo/">демо Lucky Jet</a>. На реальные деньги —{' '}
+        <a href="/igrat-na-dengi/">регистрация и депозит</a>, площадки — <a href="/gde-igrat/">где играть</a>. Отзывы —{' '}
+        <a href="/otzyvy/">отзывы игроков</a>. 18+, играйте ответственно.
+      </p>
+
       <p><PlayButton /></p>
     </div>
   </article>

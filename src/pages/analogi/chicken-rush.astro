@@ -1,18 +1,62 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
-import PlayButton from '../../components/PlayButton.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { analogAffiliateUrl } from '../../config';
+import type { BreadcrumbItem } from '../../lib/seo';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { name: 'Главная', path: '/' },
+  { name: 'Аналоги', path: '/analogi/' },
+  { name: 'Chicken Rush', path: '/analogi/chicken-rush/' },
+];
+
+const metaDescription =
+  'Chicken Rush — аналог Lucky Jet: трендовая instant-игра онлайн. Отличия от crash лаки джет и как играть в казино.';
 ---
 
-<BaseLayout
-  title="Chicken Rush — аналог Lucky Jet"
-  description="Chicken Rush — instant-игра, альтернатива Lucky Jet."
->
-  <PageHero title="Chicken Rush — альтернатива Lucky Jet" lead="Трендовая instant-игра с простой механикой." />
+<BaseLayout title="Chicken Rush — аналог Lucky Jet" description={metaDescription} breadcrumbs={breadcrumbs}>
+  <PageHero
+    title="Chicken Rush — альтернатива Lucky Jet"
+    lead="Трендовая instant с простой механикой — для смены формата после crash и лаки джет."
+    playHref={analogAffiliateUrl}
+  />
   <article class="content">
     <div class="container">
-      <p><a href="/">← Вернуться к Lucky Jet</a></p>
-      <p><PlayButton /></p>
+      <Breadcrumbs items={breadcrumbs} />
+
+      <p class="article-lead">
+        <strong>Chicken Rush</strong> — <strong>аналог Lucky Jet</strong> в смысле «другая игра из того же раздела
+        казино»: короткие раунды, ставка и результат за секунды, удобный мобильный клиент. Механика не crash — нет
+        классического роста множителя с одной кнопкой вывода.
+      </p>
+
+      <h2>Что за игра Chicken Rush</h2>
+      <p>
+        Instant-формат с пошаговым или аркадным риском (зависит от версии у оператора). Игрок продвигается по раунду,
+        увеличивая потенциальный выигрыш, и решает, когда остановиться — по духу ближе к Mines, чем к Lucky Jet, но с
+        своим визуалом и правилами в справке клиента.
+      </p>
+
+      <h2>Chicken Rush vs Lucky Jet</h2>
+      <ul>
+        <li><strong>Lucky Jet</strong> — чистый crash, cash out в реальном времени.</li>
+        <li><strong>Chicken Rush</strong> — другая подача instant, часто ищут как «новинку» в лобби.</li>
+        <li>Обе — не классические слоты с барабанами.</li>
+      </ul>
+
+      <h2>Когда имеет смысл переключиться</h2>
+      <p>
+        Если надоели раунды лаки джет и хочется свежую механику без изучения сложных слотов. Для любителей crash
+        вернитесь к <a href="/">Lucky Jet</a> или попробуйте <a href="/analogi/aviator/">Aviator</a>,{' '}
+        <a href="/analogi/pilot/">Pilot</a>.
+      </p>
+
+      <p>
+        <a href="/analogi/">Все аналоги</a>, <a href="/gde-igrat/">где играть</a>, <a href="/otzyvy/">отзывы Lucky Jet</a>.
+        18+, играйте ответственно.
+      </p>
+
     </div>
   </article>
 </BaseLayout>
